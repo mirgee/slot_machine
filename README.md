@@ -1,0 +1,3 @@
+# slot_machine
+
+Me learning to program in Java with Git...
