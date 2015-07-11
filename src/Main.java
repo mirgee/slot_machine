@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,12 +7,7 @@ import java.util.Scanner;
    git diff features and stuff.
  */
 
-// Main class of the project - stupid comment, delete on next commit
 public class Main {
-
-    private enum Reel { CHERRIES, ORANGES, PLUMS, BELLS, MELONS, BARS }
-
-    private static final int numOfReels = 3;
 
     public static void main(String[] args) {
 
@@ -25,9 +21,16 @@ public class Main {
 
             currBet = keyboard.nextDouble();
 
-            // Generate randomReels
+            List<Reel.ReelType> reels = new ArrayList<Reel.ReelType>(Reel.NUMOFREELS);
 
-            // Print result
+            // Generate randomReels
+            for(int i = 0; i < Reel.NUMOFREELS; i++) {
+                reels.add(Reel.generateRandomReel());
+            }
+
+            for(Reel.ReelType r : reels) {
+                System.out.print(r.toString());
+            }
 
             // Determine the profit and add it to amountWon
 
