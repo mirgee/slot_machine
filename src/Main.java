@@ -11,8 +11,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        double currBet;
-        String response;
+        double currBet = 0;
+        double amountWon = 0;
+        double profit = 0;
+        String response = "";
 
         Scanner keyboard = new Scanner(System.in);
 
@@ -29,10 +31,15 @@ public class Main {
             }
 
             for(Reel.ReelType r : reels) {
-                System.out.print(r.toString());
+                System.out.print(r.toString() + " ");
             }
+            System.out.println();
 
             // Determine the profit and add it to amountWon
+            profit = Reel.calculateProfitPercentage(reels) * currBet;
+            System.out.println("Your profit is $" + profit);
+            amountWon += profit;
+            System.out.println("So far, you have won $" + amountWon);
 
             // Ask user if he wants to continue
             System.out.print("Do you want to continue playing? (Y / N)");
@@ -40,5 +47,6 @@ public class Main {
         } while (response.equals("Y") || response.equals("y"));
 
         // Print the final amountWon
+        System.out.println("You won " + amountWon);
     }
 }

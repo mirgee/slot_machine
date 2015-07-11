@@ -43,13 +43,16 @@ public class Reel {
     // Method for calculating profit
     public static int calculateProfitPercentage(List<ReelType> reels) {
         Map<ReelType, Integer> freq = new HashMap();
+        for(ReelType r : reels) {
+            freq.put(r, 0);
+        }
         int highestFreq = 0;
         for(ReelType r : reels) {
             Integer f = freq.get(r);
-            if(f == null) f = 0;
             freq.put(r, ++f);
             if(f > highestFreq) highestFreq = f;
         }
-        return highestFreq;
+        if(highestFreq == 1) return 0;
+        else return highestFreq;
     }
 }
