@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
 
         double currBet = 0;
-        double amountWon = 0;
         double profit = 0;
         double balance = 0;
         double balanceStart = 0;
@@ -23,13 +22,13 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
 
         // Ask for balance to start with
-        System.out.print("Enter the balance you want to start with (each round costs $" + costPerRound + "): ");
+        System.out.print("Enter the balance you want to start with: ");
         balance = keyboard.nextDouble();
         balanceStart = balance;
 
         response = "Y";
 
-        while (balance > costPerRound && (response == "Y" || response == "y")){
+        while (balance > 0 && (response.equals("Y") || response.equals("y"))){
             System.out.println("Round " + (++round));
             System.out.print("Enter the amount of money you want to bet: ");
 
@@ -50,14 +49,12 @@ public class Main {
             // Determine the profit and add it to amountWon
             profit = Reel.calculateProfitPercentage(reels) * currBet;
             System.out.println("Your profit is $" + profit);
-            amountWon += profit;
-            System.out.println("So far, you have won $" + amountWon);
-            balance += profit - costPerRound;
+            balance += profit - currBet;
             System.out.println("Your current account balance is " + balance);
 
-            if(balance > costPerRound) {
+            if(balance > 0) {
                 // Ask user if he wants to continue
-                System.out.print("Do you want to continue playing? (Y / N)");
+                System.out.print("Do you want to continue playing? (Y / N): ");
                 response = keyboard.next();
             } else {
                 System.out.println("You don't have enough money left to continue. Better luck next time.");
@@ -66,7 +63,6 @@ public class Main {
         }
 
         // Print the final amountWon
-        System.out.println("You won $" + amountWon);
         System.out.println("Your final account balance is $" + balance);
         System.out.println("So your final profit is $" + (balance - balanceStart));
     }
